@@ -23,7 +23,7 @@ def pla(X, y):
 if __name__ == '__main__':
     df = pd.read_csv('bezdekIris.data', sep=',', header=None)
     df = df.iloc[0:100, 0:4] # 取前100个数据和前4列属性
-    df['x0'] = 1.0 # 增加一列 x_0 = 0
+    df['x0'] = 1.0 # 增加一列 x_0 = 1
     X = df.values 
     y = np.array([1.0] * 50 + [-1.0] * 50) # 前50个数据为一类，后50个数据为另一类
     w = pla(X, y)
