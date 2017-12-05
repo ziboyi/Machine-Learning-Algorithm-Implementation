@@ -28,13 +28,15 @@ def linear_svm(X, y):
     alpha = alpha[sv]
     sv_X = X[sv]  # sv's data
     sv_y = y[sv]  # sv's labels
-    print("%d support vectors out of %d points" % (len(alpha), n_samples))
+    print("\n%d support vectors out of %d points are: " % (len(alpha), n_samples))
 
     w = np.zeros(n_features)
     for n in range(len(alpha)):
+        print sv_X[n], sv_y[n]
         w += alpha[n] * sv_y[n] * sv_X[n]
 
     b = sv_y[0] - np.dot(w, sv_X[0])
+    print
 
     return w, b
 
@@ -42,6 +44,7 @@ def linear_svm(X, y):
 if __name__ == '__main__':
     df = pd.read_csv('bezdekIris.data', sep=',', header=None)
     df = df.iloc[0:100, 0:4] # 取前100个数据和前4列属性
+    #df = df.iloc[50:, 0:4] # 取后100个数据和前4列属性，它们对应的两个类别线性不可分
     X = df.values 
     y = np.array([1.0] * 50 + [-1.0] * 50) # 前50个数据为一类，后50个数据为另一类
     weight, bias = linear_svm(X, y)
